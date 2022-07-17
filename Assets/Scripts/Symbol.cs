@@ -9,7 +9,7 @@ public class Symbol : MonoBehaviour
     private int symbolValue;
 
     public int symbolCoins = 0;
-    private int bufferCoins;
+    private int bufferCoins = 0;
     public TextMeshProUGUI symbolCoinsText;
     public static bool toPutCoins = true;
 
@@ -17,9 +17,13 @@ public class Symbol : MonoBehaviour
     public GameObject diceTwo;
     public GameObject diceThree;
 
-    public int diceOneValue;
-    public int diceTwoValue;
-    public int diceThreeValue;
+    public int diceOneValue = 0;
+    public int diceTwoValue = 0;
+    public int diceThreeValue = 0;
+
+    public int lastDiceOne = 0;
+    public int lastDiceTwo = 0;
+    public int lastDiceThree = 0;
 
     private void Start()
     {
@@ -33,95 +37,116 @@ public class Symbol : MonoBehaviour
     {
         symbolCoinsText.text = symbolCoins.ToString();
 
-        diceOneValue = diceOne.GetComponent<Dice>().diceValue;
-        diceTwoValue = diceTwo.GetComponent<Dice>().diceValue;
-        diceThreeValue = diceThree.GetComponent<Dice>().diceValue;    
-        if(Dice.diceRolled == true)
+        lastDiceOne = diceOneValue;
+        lastDiceTwo = diceTwoValue;
+        lastDiceThree = diceThreeValue;
+
+        diceOneValue = diceOne.GetComponent<Dice>().finalSide;
+        diceTwoValue = diceTwo.GetComponent<Dice>().finalSide;
+        diceThreeValue = diceThree.GetComponent<Dice>().finalSide;
+
+        if (lastDiceOne != diceOneValue || lastDiceTwo != diceTwoValue || lastDiceThree != diceThreeValue)
         {
-            if (diceOneValue == symbolValue && diceTwoValue == symbolValue && diceThreeValue == symbolValue)
-            {
-                bufferCoins = symbolCoins * 4;
-                GameLogic.playerCoins += bufferCoins;
-                symbolCoins = 0;
-
-                //Debug.Log("1");
-
-            }
-
-            else if (diceOneValue == symbolValue && diceTwoValue == symbolValue && diceThreeValue != symbolValue)
-            {
-                bufferCoins = symbolCoins * 3;
-                GameLogic.playerCoins += bufferCoins;
-                symbolCoins = 0;
-
-                //Debug.Log("2");
-
-            }
-
-            else if (diceOneValue == symbolValue && diceTwoValue != symbolValue && diceThreeValue == symbolValue)
-            {
-                bufferCoins = symbolCoins * 3;
-                GameLogic.playerCoins += bufferCoins;
-                symbolCoins = 0;
-
-                //Debug.Log("3");
-
-            }
-
-            else if (diceOneValue != symbolValue && diceTwoValue == symbolValue && diceThreeValue == symbolValue)
-            {
-                bufferCoins = symbolCoins * 3;
-                GameLogic.playerCoins += bufferCoins;
-                symbolCoins = 0;
-
-                //Debug.Log("4");
-
-            }
-
-            else if (diceOneValue == symbolValue && diceTwoValue != symbolValue && diceThreeValue != symbolValue)
-            {
-                bufferCoins = symbolCoins * 2;
-                GameLogic.playerCoins += bufferCoins;
-                symbolCoins = 0;
-
-                //Debug.Log("5");
-
-            }
-
-            else if (diceOneValue != symbolValue && diceTwoValue == symbolValue && diceThreeValue != symbolValue)
-            {
-                bufferCoins = symbolCoins * 2;
-                GameLogic.playerCoins += bufferCoins;
-                symbolCoins = 0;
-
-                //Debug.Log("6");
-
-            }
-
-            else if (diceOneValue != symbolValue && diceTwoValue != symbolValue && diceThreeValue == symbolValue)
-            {
-                bufferCoins = symbolCoins * 2;
-                GameLogic.playerCoins += bufferCoins;
-                symbolCoins = 0;
-
-                //Debug.Log("7");
-
-            }
-
-            else if (diceOneValue != symbolValue && diceTwoValue != symbolValue && diceThreeValue != symbolValue)
-            {
-                bufferCoins = symbolCoins * 0;
-                GameLogic.playerCoins += bufferCoins;
-                symbolCoins = 0;
-
-                //Debug.Log("8");
-
-            }
-            Dice.diceRolled = false;
+            PayingOut();
         }
-        
+
+        lastDiceOne = 0;
+        lastDiceTwo = 0;
+        lastDiceThree = 0;
     }
 
+    
+    public void PayingOut()
+    {
+        if (diceOneValue == symbolValue && diceTwoValue == symbolValue && diceThreeValue == symbolValue)
+        {
+            bufferCoins = symbolCoins * 4;
+            GameLogic.playerCoins += bufferCoins;
+            symbolCoins = 0;
+            bufferCoins = 0;
+
+
+            Debug.Log(symbolValue + " 1");
+
+        }
+
+        if (diceOneValue == symbolValue && diceTwoValue == symbolValue && diceThreeValue != symbolValue)
+        {
+            bufferCoins = symbolCoins * 3;
+            GameLogic.playerCoins += bufferCoins;
+            symbolCoins = 0;
+            bufferCoins = 0;
+
+            Debug.Log(symbolValue + " 2");
+
+        }
+
+        if (diceOneValue == symbolValue && diceTwoValue != symbolValue && diceThreeValue == symbolValue)
+        {
+            bufferCoins = symbolCoins * 3;
+            GameLogic.playerCoins += bufferCoins;
+            symbolCoins = 0;
+            bufferCoins = 0; 
+
+            Debug.Log(symbolValue + " 3");
+
+        }
+
+        if (diceOneValue != symbolValue && diceTwoValue == symbolValue && diceThreeValue == symbolValue)
+        {
+            bufferCoins = symbolCoins * 3;
+            GameLogic.playerCoins += bufferCoins;
+            symbolCoins = 0;
+            bufferCoins = 0;
+
+            Debug.Log(symbolValue + " 4");
+
+        }
+
+        if (diceOneValue == symbolValue && diceTwoValue != symbolValue && diceThreeValue != symbolValue)
+        {
+            bufferCoins = symbolCoins * 2;
+            GameLogic.playerCoins += bufferCoins;
+            symbolCoins = 0;
+            bufferCoins = 0;
+
+            Debug.Log(symbolValue + " 5");
+
+        }
+
+        else if (diceOneValue != symbolValue && diceTwoValue == symbolValue && diceThreeValue != symbolValue)
+        {
+            bufferCoins = symbolCoins * 2;
+            GameLogic.playerCoins += bufferCoins;
+            symbolCoins = 0;
+            bufferCoins = 0;
+
+            Debug.Log(symbolValue + " 6");
+
+        }
+
+        if (diceOneValue != symbolValue && diceTwoValue != symbolValue && diceThreeValue == symbolValue)
+        {
+            bufferCoins = symbolCoins * 2;
+            GameLogic.playerCoins += bufferCoins;
+            symbolCoins = 0;
+            bufferCoins = 0;
+
+            Debug.Log(symbolValue + " 7");
+
+        }
+
+        if (diceOneValue != symbolValue && diceTwoValue != symbolValue && diceThreeValue != symbolValue)
+        {
+            bufferCoins = symbolCoins * 0;
+            GameLogic.playerCoins += bufferCoins;
+            symbolCoins = 0;
+            bufferCoins = 0;
+
+            Debug.Log(symbolValue + " 8");
+
+        }
+    }
     private void OnMouseDown()
     {
         AddingCoins();
@@ -134,10 +159,5 @@ public class Symbol : MonoBehaviour
             GameLogic.playerCoins--;
             symbolCoins++;
         }
-    }
-
-    public void PayingOut()
-    {              
-        Dice.diceRolled = false;
     }
 }

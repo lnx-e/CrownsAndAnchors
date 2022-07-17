@@ -12,35 +12,13 @@ public class Dice : MonoBehaviour {
     public int diceValue;
     public int finalSide = 0;
 
-    public static bool diceRolled = false;
-
-    private OneCard symbol1;
-    private Symbol symbol2;
-    private Symbol symbol3;
-    private Symbol symbol4;
-    private Symbol symbol5;
-    private Symbol symbol6;
-
-
-    public GameObject symbol11;
-    public GameObject symbol22;
-    public GameObject symbol33;
-    public GameObject symbol44;
-    public GameObject symbol55;
-    public GameObject symbol66;
+    public static bool diceRolled = false;    
 
     // Use this for initialization
     private void Start () {
 
         // Assign Renderer component
-        rend = GetComponent<SpriteRenderer>();
-
-        symbol1 = symbol11.GetComponent<OneCard>();
-        symbol2 = symbol22.GetComponent<Symbol>();
-        symbol3 = symbol33.GetComponent<Symbol>();
-        symbol4 = symbol44.GetComponent<Symbol>();
-        symbol5 = symbol55.GetComponent<Symbol>();
-        symbol6 = symbol66.GetComponent<Symbol>();
+        rend = GetComponent<SpriteRenderer>();        
     }
 	
     // If you left click over the dice then RollTheDice coroutine is started
@@ -52,17 +30,7 @@ public class Dice : MonoBehaviour {
             StartCoroutine("RollTheDice");
         }
 
-        
-        /*if (diceRolled == true)
-        {
-            symbol1.PayingOut();
-            symbol2.PayingOut();
-            symbol3.PayingOut();
-            symbol4.PayingOut();
-            symbol5.PayingOut();
-            symbol6.PayingOut();
-            diceRolled = false;
-        }*/
+      
     }
 
     // Coroutine that rolls the dice
@@ -92,7 +60,5 @@ public class Dice : MonoBehaviour {
         finalSide = randomDiceSide + 1;
 
         Symbol.toPutCoins = true;
-
-        //symbol1.PayingOut();
     }
 }
