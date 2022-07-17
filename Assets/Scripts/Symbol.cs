@@ -26,6 +26,8 @@ public class Symbol : MonoBehaviour
     public int lastDiceThree = 0;
 
     public AudioSource coinSound;
+    public AudioSource epicWin;
+    public AudioSource win;
 
     private void Start()
     {
@@ -62,6 +64,7 @@ public class Symbol : MonoBehaviour
     {
         if (diceOneValue == symbolValue && diceTwoValue == symbolValue && diceThreeValue == symbolValue)
         {
+            if (symbolCoins >= 1) { epicWin.Play(); }
             bufferCoins = symbolCoins * 4;
             GameLogic.playerCoins += bufferCoins;
             symbolCoins = 0;
@@ -74,6 +77,7 @@ public class Symbol : MonoBehaviour
 
         if (diceOneValue == symbolValue && diceTwoValue == symbolValue && diceThreeValue != symbolValue)
         {
+            if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 3;
             GameLogic.playerCoins += bufferCoins;
             symbolCoins = 0;
@@ -85,6 +89,7 @@ public class Symbol : MonoBehaviour
 
         if (diceOneValue == symbolValue && diceTwoValue != symbolValue && diceThreeValue == symbolValue)
         {
+            if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 3;
             GameLogic.playerCoins += bufferCoins;
             symbolCoins = 0;
@@ -96,6 +101,7 @@ public class Symbol : MonoBehaviour
 
         if (diceOneValue != symbolValue && diceTwoValue == symbolValue && diceThreeValue == symbolValue)
         {
+            if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 3;
             GameLogic.playerCoins += bufferCoins;
             symbolCoins = 0;
@@ -107,6 +113,7 @@ public class Symbol : MonoBehaviour
 
         if (diceOneValue == symbolValue && diceTwoValue != symbolValue && diceThreeValue != symbolValue)
         {
+            if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 2;
             GameLogic.playerCoins += bufferCoins;
             symbolCoins = 0;
@@ -118,6 +125,7 @@ public class Symbol : MonoBehaviour
 
         else if (diceOneValue != symbolValue && diceTwoValue == symbolValue && diceThreeValue != symbolValue)
         {
+            if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 2;
             GameLogic.playerCoins += bufferCoins;
             symbolCoins = 0;
@@ -129,6 +137,7 @@ public class Symbol : MonoBehaviour
 
         if (diceOneValue != symbolValue && diceTwoValue != symbolValue && diceThreeValue == symbolValue)
         {
+            if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 2;
             GameLogic.playerCoins += bufferCoins;
             symbolCoins = 0;

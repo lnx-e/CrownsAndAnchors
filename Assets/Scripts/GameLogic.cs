@@ -13,7 +13,7 @@ public class GameLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCoins = 5;
+        playerCoins = 900;
     }
 
     // Update is called once per frame

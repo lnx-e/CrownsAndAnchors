@@ -12,7 +12,9 @@ public class Dice : MonoBehaviour {
     public int diceValue;
     public int finalSide = 0;
 
-    public static bool diceRolled = false;    
+    public static bool diceRolled = false;
+
+    public AudioSource diceSound;
 
     // Use this for initialization
     private void Start () {
@@ -27,6 +29,7 @@ public class Dice : MonoBehaviour {
         if (Input.GetButtonDown("Jump"))
         {
             Symbol.toPutCoins = false;
+            diceSound.Play();
             StartCoroutine("RollTheDice");
         }
 
