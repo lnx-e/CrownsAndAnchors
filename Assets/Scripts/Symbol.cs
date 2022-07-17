@@ -10,7 +10,9 @@ public class Symbol : MonoBehaviour
 
     public int symbolCoins = 0;
     private int bufferCoins = 0;
+    public static int previousRoll = 0;
     public TextMeshProUGUI symbolCoinsText;
+    public TextMeshProUGUI previousRollWinText;
     public static bool toPutCoins = true;
 
     public GameObject diceOne;
@@ -57,6 +59,9 @@ public class Symbol : MonoBehaviour
         lastDiceOne = 0;
         lastDiceTwo = 0;
         lastDiceThree = 0;
+
+        GameLogic.previousRollWin = previousRoll;
+        
     }
 
     
@@ -67,8 +72,8 @@ public class Symbol : MonoBehaviour
             if (symbolCoins >= 1) { epicWin.Play(); }
             bufferCoins = symbolCoins * 4;
             GameLogic.playerCoins += bufferCoins;
+            
             symbolCoins = 0;
-            bufferCoins = 0;
 
 
             Debug.Log(symbolValue + " 1");
@@ -80,8 +85,8 @@ public class Symbol : MonoBehaviour
             if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 3;
             GameLogic.playerCoins += bufferCoins;
+           
             symbolCoins = 0;
-            bufferCoins = 0;
 
             Debug.Log(symbolValue + " 2");
 
@@ -92,8 +97,8 @@ public class Symbol : MonoBehaviour
             if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 3;
             GameLogic.playerCoins += bufferCoins;
-            symbolCoins = 0;
-            bufferCoins = 0; 
+            
+            symbolCoins = 0; 
 
             Debug.Log(symbolValue + " 3");
 
@@ -104,8 +109,9 @@ public class Symbol : MonoBehaviour
             if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 3;
             GameLogic.playerCoins += bufferCoins;
+            
             symbolCoins = 0;
-            bufferCoins = 0;
+            
 
             Debug.Log(symbolValue + " 4");
 
@@ -116,8 +122,9 @@ public class Symbol : MonoBehaviour
             if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 2;
             GameLogic.playerCoins += bufferCoins;
+            
             symbolCoins = 0;
-            bufferCoins = 0;
+            
 
             Debug.Log(symbolValue + " 5");
 
@@ -128,8 +135,9 @@ public class Symbol : MonoBehaviour
             if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 2;
             GameLogic.playerCoins += bufferCoins;
+            
             symbolCoins = 0;
-            bufferCoins = 0;
+            
 
             Debug.Log(symbolValue + " 6");
 
@@ -140,8 +148,9 @@ public class Symbol : MonoBehaviour
             if (symbolCoins >= 1) { win.Play(); }
             bufferCoins = symbolCoins * 2;
             GameLogic.playerCoins += bufferCoins;
+            
             symbolCoins = 0;
-            bufferCoins = 0;
+            
 
             Debug.Log(symbolValue + " 7");
 
@@ -151,16 +160,24 @@ public class Symbol : MonoBehaviour
         {
             bufferCoins = symbolCoins * 0;
             GameLogic.playerCoins += bufferCoins;
+            
             symbolCoins = 0;
-            bufferCoins = 0;
+            
 
             Debug.Log(symbolValue + " 8");
 
         }
+        previousRoll += bufferCoins;
+        bufferCoins = 0;
+
     }
     private void OnMouseDown()
     {
-        AddingCoins();
+        if (symbolCoins <= 19)
+        {
+            AddingCoins();
+        }
+        
     }
 
     private void AddingCoins()
@@ -171,6 +188,6 @@ public class Symbol : MonoBehaviour
             symbolCoins++;
             coinSound.Play();
 
-        }
+        }        
     }
 }

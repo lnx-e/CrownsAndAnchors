@@ -30,10 +30,8 @@ public class Dice : MonoBehaviour {
         {
             Symbol.toPutCoins = false;
             diceSound.Play();
-            StartCoroutine("RollTheDice");
+            StartCoroutine(RollTheDice());
         }
-
-      
     }
 
     // Coroutine that rolls the dice
@@ -63,5 +61,6 @@ public class Dice : MonoBehaviour {
         finalSide = randomDiceSide + 1;
 
         Symbol.toPutCoins = true;
+        Symbol.previousRoll = 0;
     }
 }
