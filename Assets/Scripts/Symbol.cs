@@ -25,6 +25,8 @@ public class Symbol : MonoBehaviour
     public int lastDiceTwo = 0;
     public int lastDiceThree = 0;
 
+    public AudioSource coinSound;
+
     private void Start()
     {
         diceOne = GameObject.Find("DICE1");
@@ -158,6 +160,7 @@ public class Symbol : MonoBehaviour
         {
             GameLogic.playerCoins--;
             symbolCoins++;
+            coinSound.Play();
 
         }
     }
