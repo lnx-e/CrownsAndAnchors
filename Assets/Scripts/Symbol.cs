@@ -31,6 +31,9 @@ public class Symbol : MonoBehaviour
     public AudioSource epicWin;
     public AudioSource win;
 
+    public GameObject JackPot;
+    
+
     private void Start()
     {
         diceOne = GameObject.Find("DICE1");
@@ -74,7 +77,14 @@ public class Symbol : MonoBehaviour
             GameLogic.playerCoins += bufferCoins;
             
             symbolCoins = 0;
-
+            if(symbolCoins == 10)
+            {
+                Dice.diceSound.Stop();
+                GameLogic.GameOverBGr.SetActive(true);
+                GameLogic.RestartButtonr.SetActive(true);
+                GameLogic.ExitButtonr.SetActive(true);
+            }
+            
 
             Debug.Log(symbolValue + " 1");
 
@@ -173,7 +183,7 @@ public class Symbol : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (symbolCoins <= 19)
+        if (symbolCoins <= 9)
         {
             AddingCoins();
         }

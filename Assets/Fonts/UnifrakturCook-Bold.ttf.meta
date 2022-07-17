@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 49f6db98a94edc34b88109f8303863e7
+guid: 911c3fbe58facf245a9067fe9c9427cc
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Showboat
+  - UnifrakturCook
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

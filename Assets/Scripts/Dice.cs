@@ -14,11 +14,12 @@ public class Dice : MonoBehaviour {
 
     public static bool diceRolled = false;
 
-    public AudioSource diceSound;
+    public AudioSource realDiceSound;
+    public static AudioSource diceSound;
 
     // Use this for initialization
     private void Start () {
-
+        diceSound = realDiceSound;
         // Assign Renderer component
         rend = GetComponent<SpriteRenderer>();        
     }
