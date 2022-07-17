@@ -6498,7 +6498,7 @@ MonoBehaviour:
   symbolFourCoins: 0
   symbolFiveCoins: 0
   symbolSixCoins: 0
-  GameOverBG: {fileID: 0}
+  GameOverBG: {fileID: 886924184}
   GameOverText: {fileID: 1895212369}
   RestartButton: {fileID: 1420896473}
   ExitButton: {fileID: 1375857678}
