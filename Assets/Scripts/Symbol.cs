@@ -158,6 +158,7 @@ public class Symbol : MonoBehaviour
         {
             GameLogic.playerCoins--;
             symbolCoins++;
+
         }
     }
 }
